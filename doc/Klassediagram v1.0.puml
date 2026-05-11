@@ -1,0 +1,107 @@
+@startuml
+!pragma layout smetana
+
+class User {
+  - phoneNumber: int
+  - mail: String
+  + addCarLicense()
+  - license List<Car>
+
+}
+
+Abstract class Parking {
+  # parking List <Zoner>
+  # parkingSpot
+  # Label: String
+
+
+}
+
+class RegularParkingSpot{
+}
+
+class DisabledParkingSpot{
+
+}
+
+class SharingCarParkingSpot{
+
+}
+
+class ElCarParkingSpot{
+
+}
+
+class PrivateArea{
+- isParkingAllowed: Boolean
+
+}
+
+
+class TextUI {
+  - scanner: Scanner
+  + getUserInput(): String
+  + showMessage(message: String)
+  + promptForPhone(): int
+  + promptForMail(): String
+}
+
+class fileIo {
+
+}
+
+
+class Car {
+  - licensePlate: String
+  - carName: String
+  + addCar()
+  + removeCar()
+
+}
+
+class Menu {
+- AvailableParkingSpot: List<Car>
+- ColoredZones: List<Zoner>
++AvailableParkingSpot()
+
+
+}
+
+class MapJavaFX{
+
+}
+
+class Payment {
+- pricePerHour: double
+- zone: List<Parking>
+
++pricePerDay()
++pricePerEvening()
++pricePerNight()
++startPayment()
++endPayment()
+
+}
+
+
+User --> Car
+Car --> Parking
+Parking --> Payment
+User --> Menu
+Menu ---> TextUI
+Menu --> MapJavaFX
+MapJavaFX --> fileIo
+Menu --> Parking
+
+
+' Arv
+Parking <|-- ElCarParkingSpot
+Parking <|-- DisabledParkingSpot
+Parking <|-- RegularParkingSpot
+Parking <|-- SharingCarParkingSpot
+Parking <|-- PrivateArea
+
+
+
+
+@enduml

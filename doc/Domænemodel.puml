@@ -3,6 +3,7 @@
 
 object Bruger
 object Parkering
+object Zoner
 object Kort
 object Bil
 object Betaling
@@ -10,7 +11,8 @@ object Betaling
 Bruger --> Bil  : has-a
 Bruger --> Kort  : has-a
 Bil --> Parkering
-Parkering --> Betaling : has-a
+Parkering --> Zoner : has-a
+Zoner --> Betaling : has-a
 
 
 

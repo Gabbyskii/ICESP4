@@ -12,8 +12,9 @@ rectangle "Streaming Service System" {
   usecase "UC4: addLicense" as UC4
   usecase "UC5: Payment" as UC5
   usecase "UC6: EndParking" as UC6
+  usecase "UC7: Map" as UC7
 
-  usecase "MainMenuMap" as M
+  usecase "Menu" as M
 
   }
 
@@ -23,11 +24,12 @@ UC0 --> UC1
 UC0 --> UC2
 
 UC2 --> M
-M --> UC3
 UC1 --> UC4
 UC4 --> M
 UC3 --> UC5
 UC5 --> UC6
+UC7 --> UC3
+M --> UC7
 
 
 
