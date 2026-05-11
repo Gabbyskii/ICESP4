@@ -1,0 +1,18 @@
+@startuml
+!pragma layout smetana
+
+object Bruger
+object Parkering
+object Kort
+object Bil
+object Betaling
+
+Bruger --> Bil  : has-a
+Bruger --> Kort  : has-a
+Bil --> Parkering
+Parkering --> Betaling : has-a
+
+
+
+
+@enduml
