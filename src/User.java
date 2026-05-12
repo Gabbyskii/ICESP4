@@ -2,14 +2,13 @@ import java.util.ArrayList;
 
 public class User {
 
-    int phoneNumber;
-    String mail;
-    ArrayList<Car> license = new ArrayList<>();
+    private int phoneNumber;
+    private String mail;
+    private ArrayList<Car> license = new ArrayList<>();
 
-    public User(int phoneNumber, String mail, ArrayList<Car> license) {
+    public User(int phoneNumber, String mail) {
         this.phoneNumber = phoneNumber;
         this.mail = mail;
-        this.license = license;
     }
 
     public void addCarLicense(Car car){
@@ -23,4 +22,8 @@ public class User {
     public String getMail(){
         return mail;
     }
+
+
+
+
 }

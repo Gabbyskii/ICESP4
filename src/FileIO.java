@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class fileIO {
+public class FileIO {
 
     private String userFile = "csv/UserData";
 
@@ -17,7 +17,10 @@ public class fileIO {
             while (line != null) {
                 String[] values = line.split(",");
                 if (values.length >= 2) {
-                    User newUser = new User(values[0].trim(), values[1].trim());
+                    int phoneNumber = Integer.parseInt(values[0].trim());
+                    String mail = values[1].trim();
+
+                    User newUser = new User(phoneNumber, mail);
                     userList.add(newUser);
                 }
                 line = breader.readLine();
