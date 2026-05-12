@@ -52,6 +52,7 @@ public class Menu {
 
                 currentUser = user;
                 textUI.displayMsg("Login successful!");
+                showMenu();
                 return;
             }
         }
