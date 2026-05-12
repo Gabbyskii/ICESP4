@@ -1,55 +1,58 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Scanner;
 
 public class FileIO {
 
-    private String userFile = "csv/UserData";
+    static final String USER_HEADER = "phone number, mail";
+    private static final String USER_FILE = "Data/UserData";
 
-    public List<User> loadUsers(ArrayList<User> users) {
-        List<User> userList = new ArrayList<>();
 
-        try {
-            BufferedReader breader = new BufferedReader(new FileReader(userFile));
-            String line = breader.readLine();
+    public static List<User> loadUsers(String path) {
+        List<User> users = new ArrayList<>();
 
-            while (line != null) {
-                String[] values = line.split(",");
-                if (values.length >= 2) {
-                    int phoneNumber = Integer.parseInt(values[0].trim());
-                    String mail = values[1].trim();
+        try (Scanner scan = new Scanner(new File(path))) {
+            if (scan.hasNextLine()) {
+                scan.nextLine(); // skip header
+            }
 
-                    User newUser = new User(phoneNumber, mail);
-                    userList.add(newUser);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue;
                 }
-                line = breader.readLine();
+
+                String[] parts = line.split(";", -1);
+                if (parts.length < 2) {
+                    continue;
+                }
+
+                int phoneNumber = Integer.parseInt(parts[0].trim());
+                String mail = parts[1].trim();
+                User user = new User(phoneNumber, mail);
+
+                users.add(user);
+
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("Fejl ved indlæsning af brugere: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Fejl ved indlæsning af bruger. " + e.getMessage());
+            System.out.println("Filen findes ikke: " + e.getMessage());
         }
 
-        return userList;
+        return users;
     }
 
-    public void saveUsers(List<User> userList) {
-        try {
-            BufferedWriter bWriter = new BufferedWriter(new FileWriter(userFile));
+    public void saveUsers(List<User> users) {
+        try (FileWriter writer = new FileWriter(USER_FILE)) {
+            writer.write(USER_HEADER + "\n");
 
-            for (User user : userList) {
-                bWriter.write(user.getPhoneNumber() + ", " + user.getMail());
-                bWriter.newLine();
+            for (User user : users) {
+                writer.write(user.getPhoneNumber() + "; " + user.getMail() + "\n");
             }
-            bWriter.close();
-
-        } catch (Exception e) {
-            System.out.println("Fejl ved gemning af bruger: " + e.getMessage());
+        }catch (IOException e) {
+            System.out.println("Problem: " + e.getMessage());
         }
     }
-
-
 
 }

@@ -1,23 +1,50 @@
 import java.util.Scanner;
 
-    public class TextUI {
-        private static Scanner sc = new Scanner(System.in);
+import java.util.Scanner;
 
-        public String getUserInput(String prompt){
-            System.out.println(prompt);
-            return sc.nextLine();
-        }
-        public void showMessage(String message){
-            System.out.println(message);
-        }
-        public int promptForPhone(){
-            System.out.println("Phone Number: ");
-            return sc.nextInt();// indtil nu
+public class TextUI {
 
+    private static Scanner sc = new Scanner(System.in);
+
+    public String getUserInput(String prompt){
+        System.out.println(prompt); return sc.nextLine();
+    }
+
+    public void showMessage(String message){
+        System.out.println(message);
+    }
+
+    public int promptForPhone(){
+        System.out.println("Phone Number: ");
+        return sc.nextInt(); // indtil nu
         }
+
         public String promptForMail(){
-            System.out.println("Mail: ");
-            return sc.nextLine(); // indtil nu
+        System.out.println("Mail: ");
+        return sc.nextLine(); // indtil nu
+        }
 
+
+    public String promptText(String msg) {
+        System.out.println(msg);
+        return sc.nextLine();
+    }
+
+    public boolean promptBinary(String msg) {
+        System.out.println(msg + " (Y/N)");
+        String input = sc.nextLine();
+
+        if (input.equalsIgnoreCase("Y")) {
+            return true;
+        } else if (input.equalsIgnoreCase("N")) {
+            return false;
+        } else {
+            return promptBinary(msg);
         }
     }
+
+    public void displayMsg(String msg) {
+        System.out.println(msg);
+    }
+}
+

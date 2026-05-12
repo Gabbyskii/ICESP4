@@ -1,25 +1,24 @@
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.List;
 
-public class Main {
+        public class Main {
 
-    public static void main (String[] args){
+            public static void main(String[] args) throws FileNotFoundException {
+
+                FileIO fileIO = new FileIO();
+                TextUI textUI = new TextUI();
+
+                List<User> users = FileIO.loadUsers("Data/UserData");
+
+                Menu menu = new Menu(users, null, textUI, fileIO);
+                menu.start();
+            }
+
+
+
         //bare for at teste compiling af koden
         Car bmw = new Car("GK12345", "BMW");
 
-        System.out.println(bmw);
-
-
-        Payment pay = new Payment(new Parking("handicap", "rød zone"));
-        System.out.println(pay.pricePerNight());
-        pay.startPayment();
-        pay.endPayment();
-
-
-        RegularParkingSpot rp = new RegularParkingSpot("regular", "blå zone", 10);
-        System.out.println(rp.getPricePerHour());
-
-
-    }
+        //System.out.println(bmw);
 
 }
