@@ -16,4 +16,11 @@ public class User {
         license.add(car);
     }
 
+    public int getPhoneNumber(){
+        return phoneNumber;
+    }
+
+    public String getMail(){
+        return mail;
+    }
 }
