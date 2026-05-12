@@ -5,5 +5,10 @@ public class PrivateArea extends Parking {
         super(label, zone);
     }
 
+    @Override
+    public String getSpotTypes() {
+        return "Private Area";
+    }
+
 
 }
