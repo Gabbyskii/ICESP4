@@ -4,6 +4,10 @@ public class ElCarParkingSpot extends Parking{
         super(label, zone);
     }
 
+    @Override
+    public String getSpotTypes() {
+        return "El Car";
+    }
 
 
 }
