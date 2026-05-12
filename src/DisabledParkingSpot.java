@@ -4,6 +4,10 @@ public class DisabledParkingSpot extends Parking{
         super(label, zone);
     }
 
+    @Override
+    public String getSpotTypes() {
+        return "Disabled Car";
+    }
 
 
 
