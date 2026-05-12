@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class FileIO {
 
-    static final String USER_HEADER = "phone number, mail";
-    private static final String USER_FILE = "Data/UserData";
+    static final String userHeader = "phone number, mail";
+    private static final String userFile = "Data/UserData";
 
 
     public static List<User> loadUsers(String path) {
@@ -14,7 +14,7 @@ public class FileIO {
 
         try (Scanner scan = new Scanner(new File(path))) {
             if (scan.hasNextLine()) {
-                scan.nextLine(); // skip header
+                scan.nextLine();
             }
 
             while (scan.hasNextLine()) {
@@ -44,8 +44,8 @@ public class FileIO {
     }
 
     public void saveUsers(List<User> users) {
-        try (FileWriter writer = new FileWriter(USER_FILE)) {
-            writer.write(USER_HEADER + "\n");
+        try (FileWriter writer = new FileWriter(userFile)) {
+            writer.write(userHeader + "\n");
 
             for (User user : users) {
                 writer.write(user.getPhoneNumber() + "; " + user.getMail() + "\n");

@@ -24,6 +24,11 @@ public class User {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "mail='" + mail + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                '}';
+    }
 }
