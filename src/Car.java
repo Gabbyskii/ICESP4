@@ -18,4 +18,11 @@ public class Car {
     public void removeCar(Car car){
         cars.remove(car);
     }
+
+
+    @Override
+    public String toString() {
+        return "Car info = "+ "LicensePlate: " + licensePlate +
+                ", Car name: " + carName;
+    }
 }
