@@ -17,10 +17,10 @@ import java.util.List;
                 }
 
 
-                //bare for at teste compiling af koden
-                Car bmw = new Car("GK12345", "BMW");
+                //bare for compiling af koden
+                /*Car bmw = new Car("GK12345", "BMW");
 
-                System.out.println(bmw);
+                System.out.println(bmw);*/
             }
 
 

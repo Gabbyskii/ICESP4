@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class FileIO {
 
-    static final String userHeader = "phone number, mail";
+    static final String userHeader = "phoneNumber, mail";
     private static final String userFile = "Data/UserData";
 
 
@@ -23,7 +23,7 @@ public class FileIO {
                     continue;
                 }
 
-                String[] parts = line.split(";", -1);
+                String[] parts = line.split(",", -1);
                 if (parts.length < 2) {
                     continue;
                 }
@@ -48,7 +48,7 @@ public class FileIO {
             writer.write(userHeader + "\n");
 
             for (User user : users) {
-                writer.write(user.getPhoneNumber() + "; " + user.getMail() + "\n");
+                writer.write(user.getPhoneNumber() + ", " + user.getMail() + "\n");
             }
         }catch (IOException e) {
             System.out.println("Problem: " + e.getMessage());
