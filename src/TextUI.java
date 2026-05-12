@@ -16,12 +16,12 @@ public class TextUI {
 
     public int promptForPhone(){
         System.out.println("Phone Number: ");
-        return sc.nextInt(); // indtil nu
+        return sc.nextInt();
         }
 
         public String promptForMail(){
         System.out.println("Mail: ");
-        return sc.nextLine(); // indtil nu
+        return sc.nextLine();
         }
 
 

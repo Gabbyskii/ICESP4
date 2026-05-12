@@ -12,6 +12,10 @@ public class RegularParkingSpot extends Parking{
         return getPricePerHour();
     }
 
+    @Override
+    public String getSpotTypes() {
+        return "Regular car";
+    }
 
     @Override
     public String toString() {
