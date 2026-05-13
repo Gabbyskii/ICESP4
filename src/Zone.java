@@ -7,6 +7,7 @@ public class Zone {
     private double pricePerHour;
     private List<Parking> spots;
 
+
     public Zone(String name, double pricePerHour) {
         this.name = name;
         this.pricePerHour = pricePerHour;

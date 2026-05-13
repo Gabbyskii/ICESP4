@@ -12,6 +12,7 @@ import java.util.List;
                 try {
                     Menu menu = new Menu(users, textUI, fileIO);
                     menu.start();
+                    menu.showMenu();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }

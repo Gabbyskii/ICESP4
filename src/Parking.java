@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public abstract class Parking {
 
@@ -54,6 +56,9 @@ public abstract class Parking {
                 throw new IllegalArgumentException("Ukendt zone: " + zone);
         }
     }
+
+
+
 
 
     @Override

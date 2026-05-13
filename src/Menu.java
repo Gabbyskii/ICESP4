@@ -6,18 +6,18 @@ import java.util.Scanner;
 public class Menu {
 
     List<User> users;
-    List<Parking> zoneList;
+   // List<Parking> zoneList;
     List<Parking> parkinglist;
     List<Car> cars;
     Payment payment;
     User currentUser;
-    Parking p;
+    Parking parking;
     TextUI textUI;
     FileIO fileIO;
 
     public Menu(List<User> users, TextUI textUI, FileIO fileIO) {
         this.users = users;
-        //this.zoneList = zoner;
+       // this.zoneList = zoner;
         this.currentUser = currentUser;
         this.textUI = textUI;
         this.fileIO = fileIO;
@@ -27,12 +27,15 @@ public class Menu {
 
         if (textUI.promptBinary("Do you have a login?")) {
             login();
+
         } else {
             registerUser();
         }
     }
 
-    public void registerUser() {
+
+
+    public void registerUser() throws FileNotFoundException {
 
         int phoneNumber = Integer.parseInt(textUI.promptText("Write your phone number"));
         String mail = textUI.promptText("Write your mail");
@@ -45,7 +48,7 @@ public class Menu {
         currentUser = newUser;
 
         textUI.displayMsg("User created! Welcome");
-        showMenu();
+        start();
     }
 
     public void registerLicense() {
@@ -96,47 +99,20 @@ public class Menu {
 
     }
 
-    private List<String> zones = new ArrayList<>();
-
-    public void ZoneManager() {
-        zones.add("Rød Zone");
-        zones.add("Grøn Zone");
-        zones.add("Blå Zone");
-        zones.add("Gul Zone");
-    }
-
-    public String showAllZones() {
-        ZoneManager();
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Alle zoner:");
-
-        for (int i = 0; i < zones.size(); i++) {
-            System.out.println((i + 1) + ": " + zones.get(i));
-        }
-
-        System.out.print("Vælg zone nummer: ");
-        int choice = scan.nextInt();
-
-
-        if (choice >= 1 && choice <= zones.size()) {
-            return zones.get(choice - 1);
-        }
-        return "test";
-    }
-
         public void showMenu() {
-            boolean parkingRuns;
-            if (parkingRuns = false){
+           // System.out.println("Test");
+            boolean parkingRuns = true;
+            if (!parkingRuns){
                 payment.endPayment();
-                p.releaseSpot();
+                parking.releaseSpot();
             }
 
             while (parkingRuns) {
                 textUI.displayMsg("\n--- Tilgængelige muligheder ---");
-                for (Parking p : zoneList) {
-                    textUI.displayMsg(p.getZone() + " (" + p.getSpotTypes() + ")");
-                }
+                /*for (Parking z: zoneList){
+                    textUI.displayMsg(z.getZones() + " (" + z.getSpotTypes() + ") "+ z.getAvailableSpots() + " ledige.");
+                }*/
+
                 textUI.displayMsg("---------------------------\n");
 
                 textUI.displayMsg("1. Vis alle zoner ");
@@ -156,6 +132,34 @@ public class Menu {
             }
         }
 
+    public List<String> getZones() {
+        List<String>  zones = new ArrayList<>();
+        zones.add("Rød Zone");
+        zones.add("Grøn Zone");
+        zones.add("Blå Zone");
+        zones.add("Gul Zone");
+        return zones;
+    }
+
+    public String showAllZones() {
+        List<String> zones = getZones();
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Alle zoner:");
+
+        for (int i = 0; i < zones.size(); i++) {
+            System.out.println((i + 1) + ": " + zones.get(i));
+        }
+
+        System.out.print("Vælg zone nummer: ");
+        int choice = scan.nextInt();
+
+        if (choice >= 1 && choice <= zones.size()) {
+             return zones.get(choice - 1);
+        }
+        return null;
+    }
+
     private void showAvailableParkingInZone() {
         String selectedZone = showAllZones();
 
@@ -168,7 +172,7 @@ public class Menu {
 
         boolean found = false;
 
-        for (Parking p : zoneList) {
+        for (Parking p : parkinglist) {
 
             if (p.getZone().equals(selectedZone)) {
 
