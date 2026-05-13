@@ -14,6 +14,22 @@ public abstract class Parking {
         this.availableSpots = totalSpots;
     }
 
+    public String getZone() {
+        return zone;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public int getTotalSpots() {
+        return totalSpots;
+    }
+
+    public int getAvailableSpots() {
+        return availableSpots;
+    }
+
     public boolean isAvailable() {
         return availableSpots > 0;
     }
