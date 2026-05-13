@@ -157,15 +157,18 @@ public class Menu {
 
         System.out.print("Vælg zone nummer: ");
         int choice = scan.nextInt();
+        showAvailableParkingInZone();
 
         if (choice >= 1 && choice <= zones.size()) {
              return zones.get(choice - 1);
+
         }
+
         return null;
     }
 
     private void showAvailableParkingInZone() {
-        String selectedZone = showAllZones();
+        String selectedZone = parking.getZone();
 
         if (selectedZone == null) {
             textUI.displayMsg("Ingen zone valgt.");

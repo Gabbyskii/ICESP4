@@ -104,4 +104,53 @@ public class FileIO {
         }
     }
 
+
+    public static List<Zone> loadZones(String path) {
+        List<Zone> zone = new ArrayList<>();
+
+        try (Scanner scan = new Scanner(new File(path))) {
+            if (scan.hasNextLine()) {
+                scan.nextLine();
+            }
+
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                String[] parts = line.split(",", -1);
+                if (parts.length < 2) {
+                    continue;
+                }
+
+                String zones = parts[0].trim();
+                String carName = parts[1].trim();
+
+                Zone zone = new Zone();
+
+                Zone.add();
+
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Filen findes ikke: " + e.getMessage());
+        }
+
+        return zone;
+    }
+
+
+
+    public void saveZone(List<Zone> zones) {
+        try (FileWriter writer = new FileWriter(carFile)) {
+
+            for (Zone z : zones) {
+                writer.write(z.() + ", " + z.() + "\n");
+            }
+        }catch (IOException e) {
+            System.out.println("Problem: " + e.getMessage());
+        }
+    }
+
 }

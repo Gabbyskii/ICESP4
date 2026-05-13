@@ -6,12 +6,26 @@ public class Zone {
     private String name;
     private double pricePerHour;
     private List<Parking> spots;
+    private DisabledParkingSpot disabled;
+    private SharingCarParkingSpot sharing;
+    private RegularParkingSpot regular;
+    private ElCarParkingSpot elCar;
+    private PrivateArea prArea;
 
 
-    public Zone(String name, double pricePerHour) {
-        this.name = name;
+
+    public Zone(double pricePerHour, String name, PrivateArea prArea,
+                ElCarParkingSpot elCar, RegularParkingSpot regular,
+                SharingCarParkingSpot sharing, DisabledParkingSpot disabled,
+                List<Parking> spots) {
         this.pricePerHour = pricePerHour;
-        this.spots = new ArrayList<>();
+        this.name = name;
+        this.prArea = prArea;
+        this.elCar = elCar;
+        this.regular = regular;
+        this.sharing = sharing;
+        this.disabled = disabled;
+        this.spots = spots;
     }
 
     public void addSpot(Parking spot) {
