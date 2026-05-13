@@ -58,4 +58,5 @@ public abstract class Parking {
     public boolean isAvailable() {
         return true;
     }
+
 }

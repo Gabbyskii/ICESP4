@@ -29,6 +29,7 @@ public class FileIO {
                     continue;
                 }
 
+
                 int phoneNumber = Integer.parseInt(parts[0].trim());
                 String mail = parts[1].trim();
                 User user = new User(phoneNumber, mail);

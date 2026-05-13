@@ -51,4 +51,5 @@ public class Zone {
                 + "/" + getTotalSpots() + " ledige "
                 + pricePerHour + " kr/t";
     }
+
 }
