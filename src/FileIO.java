@@ -8,7 +8,7 @@ public class FileIO {
     static final String userHeader = "phoneNumber, mail";
     private static final String userFile = "Data/UserData";
     private String carFile = "Data/carData";
-
+    private String zoneData = "Data/zoneData";
 
     public static List<User> loadUsers(String path) {
         List<User> users = new ArrayList<>();
@@ -127,9 +127,11 @@ public class FileIO {
                 String zones = parts[0].trim();
                 String carName = parts[1].trim();
 
-                Zone zone = new Zone();
 
-                Zone.add();
+
+                Zone z = new Zone();
+
+                Zone.add(z);
 
             }
 
@@ -143,10 +145,10 @@ public class FileIO {
 
 
     public void saveZone(List<Zone> zones) {
-        try (FileWriter writer = new FileWriter(carFile)) {
+        try (FileWriter writer = new FileWriter(zoneData)) {
 
             for (Zone z : zones) {
-                writer.write(z.() + ", " + z.() + "\n");
+                writer.write(z.getName() + ", " + z.getAvailableSpots() + "\n");
             }
         }catch (IOException e) {
             System.out.println("Problem: " + e.getMessage());
