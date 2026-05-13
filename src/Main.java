@@ -17,6 +17,7 @@ import java.util.List;
                 }
 
 
+
                 //bare for compiling af koden
                 /*Car bmw = new Car("GK12345", "BMW");
 
