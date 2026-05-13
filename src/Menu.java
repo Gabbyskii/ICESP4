@@ -7,11 +7,12 @@ public class Menu {
 
     List<User> users;
     List<Parking> zoneList;
+    List<Parking> parkinglist;
     User currentUser;
     TextUI textUI;
     FileIO fileIO;
 
-    public Menu(List<User> users,List<Parking> zoner, User currentUser, TextUI textUI, FileIO fileIO) {
+    public Menu(List<User> users, List<Parking> zoner, User currentUser, TextUI textUI, FileIO fileIO) {
         this.users = users;
         this.zoneList = zoner;
         this.currentUser = currentUser;
@@ -66,22 +67,28 @@ public class Menu {
     }
 
 
-
     private void showMenu() {
         System.out.println("\n" + "MENU TESTER - WORKING");
     }
 
+    public void chooseParkingType() {
+        textUI.displayMsg("Parkerings typer:");
+        for (Parking p : parkinglist) {
+            textUI.displayMsg(" - " + p.getSpotTypes());
+        }
+
+    }
 
     private List<String> zones = new ArrayList<>();
 
-    public ZoneManager() {
+    public void ZoneManager() {
         zones.add("Rød Zone");
         zones.add("Grøn Zone");
         zones.add("Blå Zone");
         zones.add("Gul Zone");
     }
 
-    public void showAllZones() {
+    public String showAllZones() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -98,48 +105,36 @@ public class Menu {
         if (choice >= 1 && choice <= zones.size()) {
             return zones.get(choice - 1);
         }
-
-
-
-    public void showAllZones(){
-
-
     }
 
+        public void showMenuMessage () {
+            boolean parkingRuns = true;
 
+            while (parkingRuns) {
+                textUI.displayMsg("\n--- Tilgængelige muligheder ---");
+                for (Parking p : zoneList) {
+                    textUI.displayMsg(p.getZone() + " (" + p.getSpotTypes() + ")");
+                }
+                textUI.displayMsg("---------------------------\n");
 
+                textUI.displayMsg("1. Vis alle zoner ");
+                textUI.displayMsg("2. Vis ledig parkering i zone ");
+                textUI.displayMsg("3. Vælg parkeringstyper ");
+                textUI.displayMsg("4. Log ud af bruger ");
 
+                String choice = textUI.promptText("Vælg en af mulighederne (1-4) ");
 
-    public void showMenuMessage() {
-        boolean parkingRuns = true;
+                switch (choice) {
+                    case "1" -> showAllZones();
+                    case "2" -> showAvailableParkingInZone();
+                    case "3" -> chooseParkingType();
+                    case "4" -> parkingRuns = false;
+                }
 
-        while (parkingRuns) {
-            textUI.displayMsg("\n--- Tilgængelige muligheder ---");
-            for (Parking p : zoneList ) {
-                textUI.displayMsg(p.getZone() + " (" + p.getSpotTypes() + ")");
             }
-            textUI.displayMsg("---------------------------\n");
-
-            textUI.displayMsg("1. Vis ledig parkeringstyper ");
-            textUI.displayMsg("2. Vis alle zoner ");
-            textUI.displayMsg("3. Vis ledig parkering i zone ");
-            textUI.displayMsg("4. Log ud af bruger ");
-
-            String choice = textUI.promptText("Vælg en af mulighederne (1-4) ");
-
-            switch (choice) {
-                case "1" -> showAvailableParkingType();
-                case "2" -> showAllZones();
-                case "3" -> showAvailableParkingInZone();
-                case "4" -> parkingRuns = false;
-            }
-
         }
-    }
-
-
-
 
 
 }
+
 

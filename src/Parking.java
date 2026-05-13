@@ -24,6 +24,10 @@ public abstract class Parking {
         return zone;
     }
 
+    public boolean isAvailable() {
+
+    }
+
 
     public abstract String getSpotTypes();
 
@@ -54,4 +58,6 @@ public abstract class Parking {
                 ", price=" + price +
                 '}';
     }
+
+
 }
