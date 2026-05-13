@@ -135,10 +135,11 @@ public class FileIO {
                 int PrivateArea = Integer.parseInt(parts[7].trim());
 
 
-                Zone z = new Zone(zones, PricePerHour, TotalSpots, DisabledParkingSpot, ElCarParkingSpot, RegularParkingSpot, SharingCarParkingSpot, PrivateArea);
+                Zone z = new Zone(zones, PricePerHour, TotalSpots, DisabledParkingSpot,
+                        ElCarParkingSpot, RegularParkingSpot, SharingCarParkingSpot, PrivateArea);
 
 
-                Zone.add(z);
+                zone.add(z);
 
             }
 
@@ -155,7 +156,7 @@ public class FileIO {
         try (FileWriter writer = new FileWriter(carFile)) {
 
             for (Zone z : zones) {
-                writer.write(z.() + ", " + z.() + "\n");
+                writer.write(z.getName() + ", " + z.getAvailableSpots() + "\n");
             }
         }catch (IOException e) {
             System.out.println("Problem: " + e.getMessage());
