@@ -14,7 +14,7 @@ public class Zone {
 
 
 
-    public Zone(double pricePerHour, String name, PrivateArea prArea,
+    public Zone(String name, double pricePerHour, PrivateArea prArea,
                 ElCarParkingSpot elCar, RegularParkingSpot regular,
                 SharingCarParkingSpot sharing, DisabledParkingSpot disabled,
                 List<Parking> spots) {
