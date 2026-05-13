@@ -69,6 +69,14 @@ public class Menu {
         System.out.println("\n" + "MENU TESTER - WORKING");
     }
 
+    public void showAllZones(){
+
+
+    }
+
+
+
+
 
     public void showMenuMessage() {
         boolean parkingRuns = true;
@@ -85,7 +93,7 @@ public class Menu {
             textUI.displayMsg("3. Vis vej til valgte parkering .");
             textUI.displayMsg("4. Log ud af bruger.");
 
-            String choice = textUI.promptString("Vælg en af mulighederne (1-5) ");
+            String choice = textUI.promptText("Vælg en af mulighederne (1-5) ");
 
             switch (choice) {
                 case "1" -> searchParkingType();
