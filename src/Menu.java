@@ -8,6 +8,7 @@ public class Menu {
     List<User> users;
     List<Parking> zoneList;
     List<Parking> parkinglist;
+    List<Car> cars;
     Payment payment;
     User currentUser;
     Parking p;
@@ -44,6 +45,19 @@ public class Menu {
         currentUser = newUser;
 
         textUI.displayMsg("User created! Welcome");
+        showMenu();
+    }
+
+    public void registerLicense() {
+
+        String licensePlate = textUI.promptText("Write your licensePlate: ");
+
+        Car newCar = new Car(licensePlate);
+
+        cars.add(newCar);
+        fileIO.saveCars(cars);
+
+        textUI.displayMsg("License added for your car! ");
         showMenu();
     }
 
