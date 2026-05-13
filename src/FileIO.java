@@ -8,6 +8,7 @@ public class FileIO {
     static final String userHeader = "phoneNumber, mail";
     private static final String userFile = "Data/UserData";
     private String carFile = "Data/carData";
+    private String zoneFile = "Data/zoneData";
 
 
     public static List<User> loadUsers(String path) {
@@ -105,7 +106,7 @@ public class FileIO {
     }
 
 
-    public static List<Zone> loadZones(String path) {
+    public static List<Parking> loadParking(String path) {
         List<Zone> zone = new ArrayList<>();
 
         try (Scanner scan = new Scanner(new File(path))) {
@@ -126,17 +127,17 @@ public class FileIO {
 
 
                 String zones = parts[0].trim();
-                int PricePerHour = Integer.parseInt(parts[1].trim());
-                int TotalSpots = Integer.parseInt(parts[2].trim());
-                int DisabledParkingSpot = Integer.parseInt(parts[3].trim());
-                int ElCarParkingSpot = Integer.parseInt(parts[4].trim());
-                int RegularParkingSpot = Integer.parseInt(parts[5].trim());
-                int SharingCarParkingSpot = Integer.parseInt(parts[6].trim());
-                int PrivateArea = Integer.parseInt(parts[7].trim());
+                int pricePerHour = Integer.parseInt(parts[1].trim());
+                int totalSpots = Integer.parseInt(parts[2].trim());
+                int disabledParkingSpot = Integer.parseInt(parts[3].trim());
+                int elCarParkingSpot = Integer.parseInt(parts[4].trim());
+                int regularParkingSpot = Integer.parseInt(parts[5].trim());
+                int sharingCarParkingSpot = Integer.parseInt(parts[6].trim());
+                int privateArea = Integer.parseInt(parts[7].trim());
 
 
-                Zone z = new Zone(zones, PricePerHour, TotalSpots, DisabledParkingSpot,
-                        ElCarParkingSpot, RegularParkingSpot, SharingCarParkingSpot, PrivateArea);
+                Zone z = new Zone(zones, pricePerHour, totalSpots, disabledParkingSpot,
+                        elCarParkingSpot, regularParkingSpot, sharingCarParkingSpot, privateArea);
 
 
                 zone.add(z);
@@ -147,13 +148,13 @@ public class FileIO {
             System.out.println("Filen findes ikke: " + e.getMessage());
         }
 
-        return zone;
+        return Parking;
     }
 
 
 
     public void saveZone(List<Zone> zones) {
-        try (FileWriter writer = new FileWriter(carFile)) {
+        try (FileWriter writer = new FileWriter(zoneFile)) {
 
             for (Zone z : zones) {
                 writer.write(z.getName() + ", " + z.getAvailableSpots() + "\n");

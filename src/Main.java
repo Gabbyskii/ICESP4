@@ -8,6 +8,7 @@ import java.util.List;
                 TextUI textUI = new TextUI();
 
                 List<User> users = FileIO.loadUsers("Data/UserData");
+                List<Parking> parkings = FileIO.loadParking("Data/zoneData");
 
                 try {
                     Menu menu = new Menu(users, textUI, fileIO);

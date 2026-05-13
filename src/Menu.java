@@ -17,8 +17,8 @@ public class Menu {
 
     public Menu(List<User> users, TextUI textUI, FileIO fileIO) {
         this.users = users;
-       // this.zoneList = zoner;
-        this.currentUser = currentUser;
+       //this.zoneList = zoner;
+        //this.currentUser = currentUser;
         this.textUI = textUI;
         this.fileIO = fileIO;
     }
@@ -136,6 +136,7 @@ public class Menu {
             }
         }
 
+     /*   //Nok ikke bruges
     public List<String> getZones() {
         List<String>  zones = new ArrayList<>();
         zones.add("Rød Zone");
@@ -143,10 +144,11 @@ public class Menu {
         zones.add("Blå Zone");
         zones.add("Gul Zone");
         return zones;
-    }
+    }*/
 
+    //Skal have get (reel data fra csv)
     public String showAllZones() {
-        List<String> zones = getZones();
+        List<String> zones = Parking.getZone();
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Alle zoner:");
@@ -167,13 +169,40 @@ public class Menu {
         return null;
     }
 
-    private void showAvailableParkingInZone() {
+    /*private void showAvailableParkingInZone(int choice) {
+       // Parking selectedParking = zoneList.get(choice-1);
+
         String selectedZone = parking.getZone();
 
         if (selectedZone == null) {
             textUI.displayMsg("Ingen zone valgt.");
             return;
         }
+
+        textUI.displayMsg("\nLedige pladser i: " + selectedZone);
+
+        boolean found = false;
+
+        for (Parking p : parkinglist) {
+
+            if (p.getZone().equals(selectedZone)) {
+
+                textUI.displayMsg(" - " + p.getSpotTypes());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            textUI.displayMsg("Ingen parkering fundet i denne zone.");
+        }
+    }
+
+     */
+
+//Taget fra chat original ovenpå
+    private void showAvailableParkingInZone(int choice) {
+
+        String selectedZone = getZones().get(choice - 1);
 
         textUI.displayMsg("\nLedige pladser i: " + selectedZone);
 
