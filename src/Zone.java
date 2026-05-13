@@ -10,11 +10,11 @@ public class Zone {
     private SharingCarParkingSpot sharing;
     private RegularParkingSpot regular;
     private ElCarParkingSpot elCar;
-    private PrivateArea prArea;
+    private int prArea;
 
 
 
-    public Zone(double pricePerHour, String name, PrivateArea prArea,
+    public Zone(String name, double pricePerHour, int prArea,
                 ElCarParkingSpot elCar, RegularParkingSpot regular,
                 SharingCarParkingSpot sharing, DisabledParkingSpot disabled,
                 List<Parking> spots) {

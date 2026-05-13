@@ -124,12 +124,21 @@ public class FileIO {
                     continue;
                 }
 
+
                 String zones = parts[0].trim();
-                String carName = parts[1].trim();
+                int PricePerHour = Integer.parseInt(parts[1].trim());
+                int TotalSpots = Integer.parseInt(parts[2].trim());
+                int DisabledParkingSpot = Integer.parseInt(parts[3].trim());
+                int ElCarParkingSpot = Integer.parseInt(parts[4].trim());
+                int RegularParkingSpot = Integer.parseInt(parts[5].trim());
+                int SharingCarParkingSpot = Integer.parseInt(parts[6].trim());
+                int PrivateArea = Integer.parseInt(parts[7].trim());
 
-                Zone zone = new Zone();
 
-                Zone.add();
+                Zone z = new Zone(zones, PricePerHour, TotalSpots, DisabledParkingSpot, ElCarParkingSpot, RegularParkingSpot, SharingCarParkingSpot, PrivateArea);
+
+
+                Zone.add(z);
 
             }
 
