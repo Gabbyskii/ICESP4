@@ -11,7 +11,7 @@ public class Menu {
     TextUI textUI;
     FileIO fileIO;
 
-    public Menu(List<User> users,List<Parking> zoner, User currentUser, TextUI textUI, FileIO fileIO) {
+    public Menu(List<User> users, List<Parking> zoner, TextUI textUI, FileIO fileIO) {
         this.users = users;
         this.zoneList = zoner;
         this.currentUser = currentUser;
@@ -66,56 +66,12 @@ public class Menu {
     }
 
 
-
     private void showMenu() {
-        System.out.println("\n" + "MENU TESTER - WORKING");
-    }
-
-
-    private List<String> zones = new ArrayList<>();
-
-    public ZoneManager() {
-        zones.add("Rød Zone");
-        zones.add("Grøn Zone");
-        zones.add("Blå Zone");
-        zones.add("Gul Zone");
-    }
-
-    public void showAllZones() {
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Alle zoner:");
-
-        for (int i = 0; i < zones.size(); i++) {
-            System.out.println((i + 1) + ": " + zones.get(i));
-        }
-
-        System.out.print("Vælg zone nummer: ");
-        int choice = scan.nextInt();
-
-
-        if (choice >= 1 && choice <= zones.size()) {
-            return zones.get(choice - 1);
-        }
-
-
-
-    public void showAllZones(){
-
-
-    }
-
-
-
-
-
-    public void showMenuMessage() {
         boolean parkingRuns = true;
 
         while (parkingRuns) {
             textUI.displayMsg("\n--- Tilgængelige muligheder ---");
-            for (Parking p : zoneList ) {
+            for (Parking p : zoneList) {
                 textUI.displayMsg(p.getZone() + " (" + p.getSpotTypes() + ")");
             }
             textUI.displayMsg("---------------------------\n");
@@ -137,9 +93,42 @@ public class Menu {
         }
     }
 
+    private void showAvailableParkingInZone() {
+    }
+
+    private void showAvailableParkingType() {
+    }
 
 
+    private List<String> zones = new ArrayList<>();
+
+    public void ZoneManager() {
+        zones.add("Rød Zone");
+        zones.add("Grøn Zone");
+        zones.add("Blå Zone");
+        zones.add("Gul Zone");
+    }
+
+    public String showAllZones() {
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Alle zoner:");
+
+        for (int i = 0; i < zones.size(); i++) {
+            System.out.println((i + 1) + ": " + zones.get(i));
+        }
+
+        System.out.print("Vælg zone nummer: ");
+        int choice = scan.nextInt();
 
 
+        if (choice >= 1 && choice <= zones.size()) {
+            return zones.get(choice - 1);
+        }
+
+
+        return "";
+    }
 }
 

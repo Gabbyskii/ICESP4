@@ -54,4 +54,8 @@ public abstract class Parking {
                 ", price=" + price +
                 '}';
     }
+
+    public boolean isAvailable() {
+        return true;
+    }
 }
