@@ -7,7 +7,7 @@ public class User {
     private int licensPlate;
     private ArrayList<Car> license = new ArrayList<>();
 
-    public User(int phoneNumber, String mail, int licensPlate) {
+    public User(int phoneNumber, String mail) {
         this.phoneNumber = phoneNumber;
         this.mail = mail;
     }

@@ -15,7 +15,7 @@ public class Menu {
     TextUI textUI;
     FileIO fileIO;
 
-    public Menu(List<User> users, User currentUser, TextUI textUI, FileIO fileIO) {
+    public Menu(List<User> users, TextUI textUI, FileIO fileIO) {
         this.users = users;
         //this.zoneList = zoner;
         this.currentUser = currentUser;

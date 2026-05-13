@@ -77,8 +77,8 @@ public class FileIO {
                 }
 
                 String licensePlate = parts[0].trim();
-                String carName = parts[1].trim();
-                Car car = new Car(licensePlate, carName);
+                //String carName = parts[1].trim();
+                Car car = new Car(licensePlate);
 
                 cars.add(car);
 
