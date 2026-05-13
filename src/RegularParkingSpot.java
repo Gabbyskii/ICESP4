@@ -2,10 +2,9 @@ public class RegularParkingSpot extends Parking{
 
     private double regularPrice;
 
-    public RegularParkingSpot(String label, String zone, double regularPrice) {
-        super(label, zone);
-        this.regularPrice = getPricePerHour();
-
+    public RegularParkingSpot(String label, String zone, int totalSpots, double regularPrice) {
+        super(label, zone, totalSpots);
+        this.regularPrice = regularPrice;
     }
 
     public double getRegularPrice() {
