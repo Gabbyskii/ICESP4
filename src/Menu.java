@@ -99,13 +99,15 @@ public class Menu {
 
     }
 
+    public void endParking(){
+        textUI.displayMsg("Parking ended!\n");
+        payment.endPayment();
+        parking.releaseSpot();
+    }
+
         public void showMenu() {
            // System.out.println("Test");
             boolean parkingRuns = true;
-            if (!parkingRuns){
-                payment.endPayment();
-                parking.releaseSpot();
-            }
 
             while (parkingRuns) {
                 textUI.displayMsg("\n--- Tilgængelige muligheder ---");
@@ -118,15 +120,17 @@ public class Menu {
                 textUI.displayMsg("1. Vis alle zoner ");
                 textUI.displayMsg("2. Vis ledig parkering i zone ");
                 textUI.displayMsg("3. Vælg parkeringstyper ");
-                textUI.displayMsg("4. Log ud af bruger ");
+                textUI.displayMsg("4. Afslut parkering ");
+                textUI.displayMsg("5. Log ud af bruger ");
 
-                String choice = textUI.promptText("Vælg en af mulighederne (1-4) ");
+                String choice = textUI.promptText("Vælg en af mulighederne (1-5) ");
 
                 switch (choice) {
                     case "1" -> showAllZones();
                     case "2" -> showAvailableParkingInZone();
                     case "3" -> chooseParkingType();
-                    case "4" -> parkingRuns = false;
+                    case "4" -> endParking();
+                    case "5" -> parkingRuns = false;
                 }
 
             }
