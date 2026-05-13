@@ -1,5 +1,7 @@
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Menu {
 
@@ -69,6 +71,36 @@ public class Menu {
         System.out.println("\n" + "MENU TESTER - WORKING");
     }
 
+
+    private List<String> zones = new ArrayList<>();
+
+    public ZoneManager() {
+        zones.add("Rød Zone");
+        zones.add("Grøn Zone");
+        zones.add("Blå Zone");
+        zones.add("Gul Zone");
+    }
+
+    public void showAllZones() {
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Alle zoner:");
+
+        for (int i = 0; i < zones.size(); i++) {
+            System.out.println((i + 1) + ": " + zones.get(i));
+        }
+
+        System.out.print("Vælg zone nummer: ");
+        int choice = scan.nextInt();
+
+
+        if (choice >= 1 && choice <= zones.size()) {
+            return zones.get(choice - 1);
+        }
+
+
+
     public void showAllZones(){
 
 
@@ -88,17 +120,17 @@ public class Menu {
             }
             textUI.displayMsg("---------------------------\n");
 
-            textUI.displayMsg("1. Parkeringstype");
-            textUI.displayMsg("2. Vælg zone.");
-            textUI.displayMsg("3. Vis vej til valgte parkering .");
-            textUI.displayMsg("4. Log ud af bruger.");
+            textUI.displayMsg("1. Vis ledig parkeringstyper ");
+            textUI.displayMsg("2. Vis alle zoner ");
+            textUI.displayMsg("3. Vis ledig parkering i zone ");
+            textUI.displayMsg("4. Log ud af bruger ");
 
-            String choice = textUI.promptText("Vælg en af mulighederne (1-5) ");
+            String choice = textUI.promptText("Vælg en af mulighederne (1-4) ");
 
             switch (choice) {
-                case "1" -> searchParkingType();
-                case "2" -> searchZone();
-                case "3" -> showMap();
+                case "1" -> showAvailableParkingType();
+                case "2" -> showAllZones();
+                case "3" -> showAvailableParkingInZone();
                 case "4" -> parkingRuns = false;
             }
 
