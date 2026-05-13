@@ -8,7 +8,7 @@ public class FileIO {
     static final String userHeader = "phoneNumber, mail";
     private static final String userFile = "Data/UserData";
     private String carFile = "Data/carData";
-    private String zoneData = "Data/zoneData";
+
 
     public static List<User> loadUsers(String path) {
         List<User> users = new ArrayList<>();
@@ -124,12 +124,19 @@ public class FileIO {
                     continue;
                 }
 
+
                 String zones = parts[0].trim();
-                String carName = parts[1].trim();
+                int PricePerHour = Integer.parseInt(parts[1].trim());
+                int TotalSpots = Integer.parseInt(parts[2].trim());
+                int DisabledParkingSpot = Integer.parseInt(parts[3].trim());
+                int ElCarParkingSpot = Integer.parseInt(parts[4].trim());
+                int RegularParkingSpot = Integer.parseInt(parts[5].trim());
+                int SharingCarParkingSpot = Integer.parseInt(parts[6].trim());
+                int PrivateArea = Integer.parseInt(parts[7].trim());
 
 
+                Zone z = new Zone(zones, PricePerHour, TotalSpots, DisabledParkingSpot, ElCarParkingSpot, RegularParkingSpot, SharingCarParkingSpot, PrivateArea);
 
-                Zone z = new Zone();
 
                 Zone.add(z);
 
@@ -145,10 +152,10 @@ public class FileIO {
 
 
     public void saveZone(List<Zone> zones) {
-        try (FileWriter writer = new FileWriter(zoneData)) {
+        try (FileWriter writer = new FileWriter(carFile)) {
 
             for (Zone z : zones) {
-                writer.write(z.getName() + ", " + z.getAvailableSpots() + "\n");
+                writer.write(z.() + ", " + z.() + "\n");
             }
         }catch (IOException e) {
             System.out.println("Problem: " + e.getMessage());
