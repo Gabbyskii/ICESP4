@@ -134,6 +134,31 @@ public class Menu {
             }
         }
 
+    private void showAvailableParkingInZone() {
+        String selectedZone = showAllZones();
+
+        if (selectedZone == null) {
+            textUI.displayMsg("Ingen zone valgt.");
+            return;
+        }
+
+        textUI.displayMsg("\nLedige pladser i: " + selectedZone);
+
+        boolean found = false;
+
+        for (Parking p : zoneList) {
+
+            if (p.getZone().equals(selectedZone)) {
+
+                textUI.displayMsg(" - " + p.getSpotTypes());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            textUI.displayMsg("Ingen parkering fundet i denne zone.");
+        }
+    }
 
 }
 
