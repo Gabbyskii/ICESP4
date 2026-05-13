@@ -6,9 +6,9 @@ public class Car {
     private String carName;
     ArrayList<Car> cars = new ArrayList<>();
 
-    public Car(String licensePlate, String carName) {
+    public Car(String licensePlate) {
         this.licensePlate = licensePlate;
-        this.carName = carName;
+       // this.carName = carName;
     }
 
     public void addCar(Car car){
@@ -45,7 +45,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car info = "+ "LicensePlate: " + licensePlate +
-                ", Car name: " + carName;
+        return "Car info = "+ "LicensePlate: " + licensePlate;
+              //  ", Car name: " + carName;
     }
 }

@@ -15,9 +15,9 @@ public class Menu {
     TextUI textUI;
     FileIO fileIO;
 
-    public Menu(List<User> users, List<Parking> zoner, User currentUser, TextUI textUI, FileIO fileIO) {
+    public Menu(List<User> users, User currentUser, TextUI textUI, FileIO fileIO) {
         this.users = users;
-        this.zoneList = zoner;
+        //this.zoneList = zoner;
         this.currentUser = currentUser;
         this.textUI = textUI;
         this.fileIO = fileIO;
@@ -28,11 +28,11 @@ public class Menu {
         if (textUI.promptBinary("Do you have a login?")) {
             login();
         } else {
-            register();
+            registerUser();
         }
     }
 
-    public void register() {
+    public void registerUser() {
 
         int phoneNumber = Integer.parseInt(textUI.promptText("Write your phone number"));
         String mail = textUI.promptText("Write your mail");
@@ -83,9 +83,7 @@ public class Menu {
     }
 
 
-    private void showMenu() {
-        System.out.println("\n" + "MENU TESTER - WORKING");
-    }
+
 
     public void chooseParkingType() {
         textUI.displayMsg("Parkerings typer:");

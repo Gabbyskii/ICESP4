@@ -10,7 +10,6 @@ public class User {
     public User(int phoneNumber, String mail, int licensPlate) {
         this.phoneNumber = phoneNumber;
         this.mail = mail;
-        this.licensPlate = licensPlate;
     }
 
     public void addCarLicense(Car car) {
@@ -24,14 +23,6 @@ public class User {
     public String getMail(){
         return mail;
     }
-
-    public int getLicens(){
-        return licensPlate;
-    }
-
-
-
-
 
 
 

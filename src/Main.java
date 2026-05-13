@@ -10,7 +10,7 @@ import java.util.List;
                 List<User> users = FileIO.loadUsers("Data/UserData");
 
                 try {
-                    Menu menu = new Menu(users, null, textUI, fileIO);
+                    Menu menu = new Menu(users, textUI, fileIO);
                     menu.start();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
