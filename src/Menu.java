@@ -8,7 +8,9 @@ public class Menu {
     List<User> users;
     List<Parking> zoneList;
     List<Parking> parkinglist;
+    Payment payment;
     User currentUser;
+    Parking p;
     TextUI textUI;
     FileIO fileIO;
 
@@ -75,6 +77,9 @@ public class Menu {
         textUI.displayMsg("Parkerings typer:");
         for (Parking p : parkinglist) {
             textUI.displayMsg(" - " + p.getSpotTypes());
+            p.takeSpot();
+            payment.startPayment();
+
         }
 
     }
@@ -89,7 +94,7 @@ public class Menu {
     }
 
     public String showAllZones() {
-
+        ZoneManager();
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Alle zoner:");
@@ -105,10 +110,15 @@ public class Menu {
         if (choice >= 1 && choice <= zones.size()) {
             return zones.get(choice - 1);
         }
+        return "test";
     }
 
-        public void showMenuMessage () {
-            boolean parkingRuns = true;
+        public void showMenu() {
+            boolean parkingRuns;
+            if (parkingRuns = false){
+                payment.endPayment();
+                p.releaseSpot();
+            }
 
             while (parkingRuns) {
                 textUI.displayMsg("\n--- Tilgængelige muligheder ---");

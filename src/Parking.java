@@ -4,48 +4,39 @@ public abstract class Parking {
 
     private String label;
     private String zone;
-    private ArrayList<?> parkering = new ArrayList<>();
-    private int price;
+    private int availableSpots;
+    private int totalSpots;
 
-    public Parking(String label, String zone) {
+    public Parking(String label, String zone, int totalSpots) {
         this.label = label;
         this.zone = zone;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getZone() {
-        return zone;
+        this.totalSpots = totalSpots;
+        this.availableSpots = totalSpots;
     }
 
     public boolean isAvailable() {
-
+        return availableSpots > 0;
     }
 
+    public void takeSpot() {
+        if (availableSpots > 0) availableSpots--;
+    }
+
+    public void releaseSpot() {
+        if (availableSpots < totalSpots) availableSpots++;
+    }
 
     public abstract String getSpotTypes();
 
-
     public double getPricePerHour() {
-       switch (zone){
-           case "rød zone", "grøn zone":
-           return 35.00;
-           case "blå zone":
-           return 20.00;
-           case "gul zone":
-           return 17.00;
-
-           default:
-               System.out.println("Invalid");
-       }
-
-        return 0;
+        switch (zone) {
+            case "rød zone":  return 37.00;
+            case "blå zone":  return 20.00;
+            case "grøn zone": return 11.00;
+            case "gul zone":  return 17.00;
+            default:
+                throw new IllegalArgumentException("Ukendt zone: " + zone);
+        }
     }
 
 
@@ -54,8 +45,7 @@ public abstract class Parking {
         return "Parking{" +
                 "label='" + label + '\'' +
                 ", zone='" + zone + '\'' +
-                ", parkering=" + parkering +
-                ", price=" + price +
+                ", spots=" + availableSpots + "/" + totalSpots +
                 '}';
     }
 

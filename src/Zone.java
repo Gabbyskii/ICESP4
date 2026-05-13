@@ -8,9 +8,9 @@ public class Zone {
     private List<Parking> spots;
 
     public Zone(String name, double pricePerHour) {
-        this.name         = name;
+        this.name = name;
         this.pricePerHour = pricePerHour;
-        this.spots        = new ArrayList<>();
+        this.spots = new ArrayList<>();
     }
 
     public void addSpot(Parking spot) {
