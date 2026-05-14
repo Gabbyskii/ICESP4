@@ -8,7 +8,7 @@ public class SharingCarParkingSpot extends Parking {
 
     @Override
     public String getSpotTypes() {
-        return "Sharing domain.Car";
+        return "Sharing Car";
     }
 
 

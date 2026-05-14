@@ -10,7 +10,7 @@ public class RegularParkingSpot extends Parking {
 
     @Override
     public String getSpotTypes() {
-        return "Regular domain.Car";
+        return "Regular Car";
     }
 
     public double getRegularPrice() {
@@ -19,7 +19,7 @@ public class RegularParkingSpot extends Parking {
 
     @Override
     public String toString() {
-        return "domain.RegularParkingSpot: "+ regularPrice;
+        return "RegularParkingSpot: "+ regularPrice;
     }
 
 
