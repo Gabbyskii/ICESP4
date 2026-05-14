@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package domain;
 
 public class Car {
 
@@ -16,7 +16,6 @@ public class Car {
     public String toString() {
         return licensePlate;
     }
-
 
 
 }

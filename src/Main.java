@@ -1,30 +1,27 @@
+import domain.Car;
+import domain.Menu;
+import domain.User;
+import domain.Zone;
+import util.FileIO;
+import util.TextUI;
+
 import java.io.FileNotFoundException;
 import java.util.List;
 
-        public class Main {
+public class Main {
 
-            public static void main(String[] args) {
-                FileIO fileIO = new FileIO();
-                TextUI textUI = new TextUI();
+    public static void main(String[] args) throws FileNotFoundException {
 
-                List<User> users = FileIO.loadUsers("Data/UserData");
-                List<Parking> parkings = FileIO.loadParking("Data/zoneData");
+        FileIO fileIO = new FileIO();
+        TextUI textUI = new TextUI();
 
-                try {
-                    Menu menu = new Menu(users, textUI, fileIO);
-                    menu.start();
-                    menu.showMenu();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+        List<User> users = FileIO.loadUsers("Data/UserData");
+        List<Zone> zones = fileIO.loadZones("Data/zoneData");
+        List<Car> cars = fileIO.loadCars("Data/carData");
 
+        Menu menu = new Menu(users, zones, cars, textUI, fileIO);
 
-
-                //bare for compiling af koden
-                /*Car bmw = new Car("GK12345", "BMW");
-
-                System.out.println(bmw);*/
-            }
-
+        menu.start();
+    }
 
 }
