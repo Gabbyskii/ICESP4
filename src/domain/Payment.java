@@ -34,7 +34,7 @@ public class Payment {
             System.out.println("Parkering afsluttet efter: " + minutes +
                     " min og " + seconds + " sek");
 
-            return (totalSeconds / 60.0) * parking.getPricePerHour();
+            return (totalSeconds / 3600.0) * parking.getPricePerHour();
         }
 
 
