@@ -99,7 +99,7 @@ public class Menu {
         while (running) {
 
             textUI.displayMsg("\n--- MENU ---");
-            textUI.displayMsg("1. Registrer lisens");
+            textUI.displayMsg("1. Registrer nummerplade");
             textUI.displayMsg("2. Vis alle zoner");
             textUI.displayMsg("3. Vis ledig parkering i zone");
             textUI.displayMsg("4. Vælg parkeringstype");
