@@ -116,7 +116,7 @@ public class Menu {
                 case "4" -> chooseParkingType();
                 case "5" -> endParking();
                 case "6" -> {
-                    textUI.displayMsg("Logged out");
+                    textUI.displayMsg("Logget ud");
                     running = false;
                 }
             }
