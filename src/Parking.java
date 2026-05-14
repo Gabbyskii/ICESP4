@@ -35,5 +35,7 @@ public abstract class Parking {
     }
 
     public abstract String getSpotTypes();
+
 }
+
 
