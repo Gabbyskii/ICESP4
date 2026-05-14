@@ -8,7 +8,7 @@ public class FileIO {
     static final String userHeader = "phoneNumber, mail";
     private static final String userFile = "Data/UserData";
     private static final String carFile = "Data/carData";
-    private static final String zoneFile = "Data/zoneData.csv";
+    private static final String zoneData = "Data/zoneData.csv";
 
     public static List<User> loadUsers(String path) {
         List<User> users = new ArrayList<>();
