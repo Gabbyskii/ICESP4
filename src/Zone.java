@@ -6,50 +6,85 @@ public class Zone {
     private String name;
     private double pricePerHour;
     private List<Parking> spots;
-    private int totalSpots;
+    private int totalspots;
     private int disabled;
-    private int el;
-    private int regular;
     private int sharing;
-    private int privateArea;
+    private int regular;
+    private int elCar;
+    private int prArea;
 
-    public Zone(String name, double pricePerHour, int totalSpots, int disabled, int el, int regular, int sharing, int privateArea) {
 
+    public Zone(String name, double pricePerHour, int totalspots, int disabled,
+                int sharing, int regular, int prArea, int elCar) {
         this.name = name;
         this.pricePerHour = pricePerHour;
-        this.spots = new ArrayList<>();
-
-        for (int i = 0; i < disabled; i++)
-            spots.add(new DisabledParkingSpot("D"+i, this));
-
-        for (int i = 0; i < el; i++)
-            spots.add(new ElCarParkingSpot("E"+i, this));
-
-        for (int i = 0; i < regular; i++)
-            spots.add(new RegularParkingSpot("R"+i, this));
-
-        for (int i = 0; i < sharing; i++)
-            spots.add(new SharingCarParkingSpot("S"+i, this));
-
-        for (int i = 0; i < privateArea; i++)
-            spots.add(new PrivateArea("P"+i, this));
+        this.totalspots = totalspots;
+        this.disabled = disabled;
+        this.sharing = sharing;
+        this.regular = regular;
+        this.prArea = prArea;
+        this.elCar = elCar;
     }
 
-    public String getName() {
+    public void addSpot(Parking spot) {
+        spots.add(spot);
+    }
+
+    public int getPrArea() {
+        return prArea;
+    }
+
+    public int getElCar() {
+        return elCar;
+    }
+
+    public int getRegular() {
+        return regular;
+    }
+
+    public int getSharing() {
+        return sharing;
+    }
+
+    public int getDisabled() {
+        return disabled;
+    }
+
+    public int getAvailableSpots() {
+        int count = 0;
+        for (Parking spot : spots) {
+            if (spot.isAvailable()) count++;
+        }
+        return count;
+    }
+
+    public int getTotalSpots() {
+        return spots.size();
+    }
+
+    public boolean hasAvailability() {
+        return getAvailableSpots() > 0;
+    }
+
+
+    public String getName()          {
         return name;
     }
 
-    public double getPricePerHour() {
+
+    public double getPricePerHour()  {
         return pricePerHour;
     }
 
-    public List<Parking> getSpots() {
+
+    public List<Parking> getSpots()  {
         return spots;
     }
 
     @Override
     public String toString() {
-        return name + " - " + pricePerHour + " kr/t";
+        return name + " — " + getAvailableSpots()
+                + "/" + getTotalSpots() + " ledige "
+                + pricePerHour + " kr/t";
     }
-
 }
