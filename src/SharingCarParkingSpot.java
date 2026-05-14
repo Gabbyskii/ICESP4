@@ -10,4 +10,5 @@ public class SharingCarParkingSpot extends Parking {
     }
 
 
+
 }

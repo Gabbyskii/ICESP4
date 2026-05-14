@@ -26,4 +26,5 @@ public class Payment {
 
         return cost;
     }
+
 }

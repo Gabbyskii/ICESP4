@@ -51,4 +51,5 @@ public class Zone {
     public String toString() {
         return name + " - " + pricePerHour + " kr/t";
     }
+
 }
