@@ -169,7 +169,7 @@ public class Menu {
             }
         }
 
-        textUI.displayMsg("Ledige pladser:");
+        textUI.displayMsg("- Ledige pladser -");
         textUI.displayMsg("Total available: " + totalAvailable);
         textUI.displayMsg("Disabled: " + disabled);
         textUI.displayMsg("El: " + elCar);
