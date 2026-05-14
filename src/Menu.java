@@ -106,7 +106,7 @@ public class Menu {
             textUI.displayMsg("5. Afslut parkering");
             textUI.displayMsg("6. Log ud");
 
-            String choice = textUI.promptText("Vælg:");
+            String choice = textUI.promptText("\nVælg:");
 
             switch (choice) {
 
