@@ -52,4 +52,5 @@ public class Zone {
         return name + " - " + pricePerHour + " kr/t";
     }
 
+
 }
