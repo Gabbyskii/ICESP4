@@ -24,19 +24,18 @@ public class Payment {
     }
 
     public double endPayment() {
-       endTime = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+            endTime = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
 
-       Duration duration = Duration.between(startTime, endTime);
+            Duration duration = Duration.between(startTime, endTime);
+            long minutes = duration.toMinutes();
+            long seconds = duration.toSecondsPart();
+            long totalSeconds = Duration.between(startTime, LocalTime.now()).toSeconds();
 
-        long minutes = duration.toMinutes();
-        long seconds = duration.toSecondsPart();
-        long totalSecs = duration.toSeconds();
+            System.out.println("Parkering afsluttet efter: " + minutes +
+                    " min og " + seconds + " sek");
 
-        System.out.println("Parkering afsluttet efter: " + minutes +
-                " min og "+ seconds + " sek");
+            return (totalSeconds / 60.0) * parking.getPricePerHour();
+        }
 
-        double pricePerSecond = parking.getPricePerHour() / 3600.0;
-        return totalSecs * pricePerSecond;
 
-    }
 }
