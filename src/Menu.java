@@ -198,7 +198,7 @@ public class Menu {
         Zone zone = zones.get(zoneChoice);
 
         String type = textUI.promptText(
-                "Type (Regular, El Car, Disabled, Sharing, Private):");
+                "Type (Regular, El, Disabled, Sharing, Private):");
 
         boolean found = false;
 
