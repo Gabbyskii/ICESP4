@@ -30,6 +30,25 @@ public class Zone {
         spots.add(spot);
     }
 
+    public int getPrArea() {
+        return prArea;
+    }
+
+    public int getElCar() {
+        return elCar;
+    }
+
+    public int getRegular() {
+        return regular;
+    }
+
+    public int getSharing() {
+        return sharing;
+    }
+
+    public int getDisabled() {
+        return disabled;
+    }
 
     public int getAvailableSpots() {
         int count = 0;
@@ -51,9 +70,13 @@ public class Zone {
     public String getName()          {
         return name;
     }
+
+
     public double getPricePerHour()  {
         return pricePerHour;
     }
+
+
     public List<Parking> getSpots()  {
         return spots;
     }
