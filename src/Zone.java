@@ -47,17 +47,6 @@ public class Zone {
         return spots;
     }
 
-    public String getZoneInfo() {
-        return "Zone: " + name +
-                "\nTotal spots: " + totalSpots +
-                "\nDisabled spots: " + disabled +
-                "\nEl spots: " + el +
-                "\nRegular spots: " + regular +
-                "\nSharing spots: " + sharing +
-                "\nPrivate area spots: " + privateArea +
-                "\nPrice per hour: " + pricePerHour;
-    }
-
     @Override
     public String toString() {
         return name + " - " + pricePerHour + " kr/t";

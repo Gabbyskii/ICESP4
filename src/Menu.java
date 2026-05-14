@@ -144,7 +144,7 @@ public class Menu {
 
         Zone zone = zones.get(choice);
 
-        textUI.displayMsg("\n=== " + zone.getName() + " ===");
+        textUI.displayMsg("\n=== " + zone.getName() + "zone ===");
 
         int disabled = 0;
         int elCar = 0;
