@@ -1,0 +1,116 @@
+@startuml
+!pragma layout smetana
+
+  class User {
+    - phoneNumber : int
+    - mail : String
+    - cars : List<Car>
+    + addCar(car : Car)
+    + getCars() : List<Car>
+    + hasCar() : boolean
+    + getPhoneNumber() : int
+    + getMail() : String
+  }
+
+  class Car {
+    - licensePlate : String
+    + getLicensePlate() : String
+  }
+
+  class Zone {
+    - name : String
+    - pricePerHour : double
+    - spots : List<Parking>
+    + getName() : String
+    + getPricePerHour() : double
+    + getSpots() : List<Parking>
+  }
+
+  abstract class Parking {
+    - label : String
+    - available : boolean
+    + isAvailable() : boolean
+    + takeSpot()
+    + releaseSpot()
+    + getPricePerHour() : double
+    + {abstract} getSpotTypes() : String
+  }
+
+  class RegularParkingSpot {
+    + getSpotTypes() : String
+  }
+
+  class DisabledParkingSpot {
+    + getSpotTypes() : String
+  }
+
+  class ElCarParkingSpot {
+    + getSpotTypes() : String
+  }
+
+  class SharingCarParkingSpot {
+    + getSpotTypes() : String
+  }
+
+  class PrivateArea {
+    + getSpotTypes() : String
+  }
+
+  class Payment {
+    - startTime : LocalTime
+    + startPayment()
+    + endPayment() : double
+  }
+
+  class Menu {
+    - currentUser : User
+    - parking : Parking
+    - payment : Payment
+    + start()
+    + login()
+    + registerUser()
+    + showMenu()
+    + chooseParkingType()
+    + endParking()
+  }
+
+
+
+package util {
+
+  class TextUI {
+    + getUserInput(prompt : String) : String
+    + promptText(msg : String) : String
+    + promptBinary(msg : String) : boolean
+    + displayMsg(msg : String)
+  }
+
+  class FileIO {
+    + loadUsers(path : String) : List<User>
+    + saveUsers(users : List<User>)
+    + loadCars(path : String) : List<Car>
+    + saveCars(cars : List<Car>)
+    + loadZones(path : String) : List<Zone>
+  }
+
+}
+
+
+Parking <|-- RegularParkingSpot
+Parking <|-- DisabledParkingSpot
+Parking <|-- ElCarParkingSpot
+Parking <|-- SharingCarParkingSpot
+Parking <|-- PrivateArea
+
+
+User --> Car
+Car --> Parking
+Zone <-- Parking
+Payment <-- Parking
+Menu --> User
+Menu --> Zone
+Menu --> Payment
+Menu --> TextUI
+Menu --> FileIO
+
+@endumlduml
