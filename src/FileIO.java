@@ -7,38 +7,30 @@ public class FileIO {
 
     static final String userHeader = "phoneNumber, mail";
     private static final String userFile = "Data/UserData";
-    private String carFile = "Data/carData";
+    private static final String carFile = "Data/carData";
+    private static final String zoneFile = "Data/zoneData.csv";
 
+    // ================= USERS =================
 
     public static List<User> loadUsers(String path) {
         List<User> users = new ArrayList<>();
 
         try (Scanner scan = new Scanner(new File(path))) {
-            if (scan.hasNextLine()) {
-                scan.nextLine();
-            }
+
+            if (scan.hasNextLine()) scan.nextLine();
 
             while (scan.hasNextLine()) {
-                String line = scan.nextLine().trim();
-                if (line.isEmpty()) {
-                    continue;
-                }
 
-                String[] parts = line.split(",", -1);
-                if (parts.length < 2) {
-                    continue;
-                }
+                String[] parts = scan.nextLine().split(",");
 
                 int phoneNumber = Integer.parseInt(parts[0].trim());
                 String mail = parts[1].trim();
-                User user = new User(phoneNumber, mail);
 
-                users.add(user);
-
+                users.add(new User(phoneNumber, mail));
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Filen findes ikke: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Fejl i users: " + e.getMessage());
         }
 
         return users;
@@ -46,121 +38,94 @@ public class FileIO {
 
     public void saveUsers(List<User> users) {
         try (FileWriter writer = new FileWriter(userFile)) {
+
             writer.write(userHeader + "\n");
 
             for (User user : users) {
-                writer.write(user.getPhoneNumber() + ", " + user.getMail() + "\n");
+                writer.write(user.getPhoneNumber() + "," + user.getMail() + "\n");
             }
-        }catch (IOException e) {
-            System.out.println("Problem: " + e.getMessage());
+
+        } catch (IOException e) {
+            System.out.println("Fejl ved saveUsers");
         }
     }
 
+    // ================= CARS =================
 
     public static List<Car> loadCars(String path) {
         List<Car> cars = new ArrayList<>();
 
         try (Scanner scan = new Scanner(new File(path))) {
-            if (scan.hasNextLine()) {
-                scan.nextLine();
-            }
+
+            if (scan.hasNextLine()) scan.nextLine();
 
             while (scan.hasNextLine()) {
-                String line = scan.nextLine().trim();
-                if (line.isEmpty()) {
-                    continue;
-                }
 
-                String[] parts = line.split(",", -1);
-                if (parts.length < 2) {
-                    continue;
-                }
+                String line = scan.nextLine().trim();
+                if (line.isEmpty()) continue;
+
+                String[] parts = line.split(",");
 
                 String licensePlate = parts[0].trim();
-                //String carName = parts[1].trim();
-                Car car = new Car(licensePlate);
 
-                cars.add(car);
-
+                cars.add(new Car(licensePlate));
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Filen findes ikke: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Fejl i cars: " + e.getMessage());
         }
 
         return cars;
     }
 
-
-
     public void saveCars(List<Car> cars) {
         try (FileWriter writer = new FileWriter(carFile)) {
 
+            writer.write("licensePlate\n");
+
             for (Car car : cars) {
-                writer.write(car.getLicensePlate() + ", " + car.getLicensePlate() + "\n");
+                writer.write(car.getLicensePlate() + "\n");
             }
-        }catch (IOException e) {
-            System.out.println("Problem: " + e.getMessage());
+
+        } catch (IOException e) {
+            System.out.println("Fejl ved saveCars");
         }
     }
 
+    // ================= ZONES =================
 
     public static List<Zone> loadZones(String path) {
-        List<Zone> zone = new ArrayList<>();
+        List<Zone> zones = new ArrayList<>();
 
         try (Scanner scan = new Scanner(new File(path))) {
-            if (scan.hasNextLine()) {
-                scan.nextLine();
-            }
+
+            if (scan.hasNextLine()) scan.nextLine();
 
             while (scan.hasNextLine()) {
+
                 String line = scan.nextLine().trim();
-                if (line.isEmpty()) {
-                    continue;
-                }
+                if (line.isEmpty()) continue;
 
-                String[] parts = line.split(",", -1);
-                if (parts.length < 2) {
-                    continue;
-                }
+                String[] p = line.split(",");
 
+                Zone z = new Zone(
+                        p[0].trim(),
+                        Double.parseDouble(p[1].trim()),
+                        Integer.parseInt(p[2].trim()),
+                        Integer.parseInt(p[3].trim()),
+                        Integer.parseInt(p[4].trim()),
+                        Integer.parseInt(p[5].trim()),
+                        Integer.parseInt(p[6].trim()),
+                        Integer.parseInt(p[7].trim())
+                );
 
-                String zones = parts[0].trim();
-                int PricePerHour = Integer.parseInt(parts[1].trim());
-                int TotalSpots = Integer.parseInt(parts[2].trim());
-                int DisabledParkingSpot = Integer.parseInt(parts[3].trim());
-                int ElCarParkingSpot = Integer.parseInt(parts[4].trim());
-                int RegularParkingSpot = Integer.parseInt(parts[5].trim());
-                int SharingCarParkingSpot = Integer.parseInt(parts[6].trim());
-                int PrivateArea = Integer.parseInt(parts[7].trim());
-
-
-                Zone z = new Zone(zones, PricePerHour, TotalSpots, DisabledParkingSpot,
-                        ElCarParkingSpot, RegularParkingSpot, SharingCarParkingSpot, PrivateArea);
-
-
-                zone.add(z);
-
+                zones.add(z);
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Filen findes ikke: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Fejl i zones: " + e.getMessage());
         }
 
-        return zone;
+        return zones;
     }
-
-
-
-    public void saveZone(List<Zone> zones) {
-        try (FileWriter writer = new FileWriter(carFile)) {
-
-            for (Zone z : zones) {
-                writer.write(z.getName() + ", " + z.getAvailableSpots() + "\n");
-            }
-        }catch (IOException e) {
-            System.out.println("Problem: " + e.getMessage());
-        }
-    }
-
 }

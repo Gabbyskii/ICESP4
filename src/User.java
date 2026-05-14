@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
     private int phoneNumber;
     private String mail;
     private int licensPlate;
+    private List<Car> cars = new ArrayList<>();
     private ArrayList<Car> license = new ArrayList<>();
 
     public User(int phoneNumber, String mail) {
@@ -24,7 +26,17 @@ public class User {
         return mail;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
 
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+
+    public boolean hasCar() {
+        return !cars.isEmpty();
+    }
 
     @Override
     public String toString() {

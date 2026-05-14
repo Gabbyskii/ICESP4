@@ -2,18 +2,17 @@ public class RegularParkingSpot extends Parking{
 
     private double regularPrice;
 
-    public RegularParkingSpot(String label, String zone, int totalSpots, double regularPrice) {
-        super(label, zone, totalSpots);
-        this.regularPrice = regularPrice;
-    }
-
-    public double getRegularPrice() {
-        return getPricePerHour();
+    public RegularParkingSpot(String label, Zone zone) {
+        super(label, zone);
     }
 
     @Override
     public String getSpotTypes() {
-        return "Regular car";
+        return "Regular Car";
+    }
+
+    public double getRegularPrice() {
+        return getPricePerHour();
     }
 
     @Override

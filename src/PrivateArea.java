@@ -1,8 +1,8 @@
 public class PrivateArea extends Parking {
 
 
-    public PrivateArea(String label, String zone, int totalSpots) {
-        super(label, zone, totalSpots);
+    public PrivateArea(String label, Zone zone) {
+        super(label, zone);
     }
 
     @Override

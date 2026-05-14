@@ -6,39 +6,41 @@ import java.util.Scanner;
 public class Menu {
 
     List<User> users;
-   // List<Parking> zoneList;
-    List<Parking> parkinglist;
+    List<Zone> zones;
     List<Car> cars;
+
     Payment payment;
     User currentUser;
     Parking parking;
+
     TextUI textUI;
     FileIO fileIO;
 
-    public Menu(List<User> users, TextUI textUI, FileIO fileIO) {
+    public Menu(List<User> users, List<Zone> zones, List<Car> cars, TextUI textUI, FileIO fileIO) {
+
         this.users = users;
-       // this.zoneList = zoner;
-        this.currentUser = currentUser;
+        this.zones = zones;
+        this.cars = cars;
         this.textUI = textUI;
         this.fileIO = fileIO;
     }
 
     public void start() throws FileNotFoundException {
 
-        if (textUI.promptBinary("Do you have a login?")) {
+        if (textUI.promptBinary("Har du et login?")) {
             login();
-
         } else {
             registerUser();
         }
     }
 
-
-
     public void registerUser() throws FileNotFoundException {
 
-        int phoneNumber = Integer.parseInt(textUI.promptText("Write your phone number"));
-        String mail = textUI.promptText("Write your mail");
+        int phoneNumber =
+                Integer.parseInt(textUI.promptText("Skriv dit telefon nummer:"));
+
+        String mail =
+                textUI.promptText("Skriv din mail:");
 
         User newUser = new User(phoneNumber, mail);
 
@@ -47,27 +49,31 @@ public class Menu {
 
         currentUser = newUser;
 
-        textUI.displayMsg("User created! Welcome");
-        start();
+        textUI.displayMsg("Bruger oprettet!");
+        showMenu();
     }
 
     public void registerLicense() {
 
-        String licensePlate = textUI.promptText("Write your licensePlate: ");
+        String licensePlate = textUI.promptText("Skriv din nummerplade: ");
 
         Car newCar = new Car(licensePlate);
 
         cars.add(newCar);
+        currentUser.addCar(newCar);
         fileIO.saveCars(cars);
 
-        textUI.displayMsg("License added for your car! ");
+        textUI.displayMsg("Lisens tilføjet til din bil! ");
         showMenu();
     }
 
     public void login() throws FileNotFoundException {
 
-        int phoneNumber = Integer.parseInt(textUI.promptText("Write your phone number"));
-        String mail = textUI.promptText("Write your mail");
+        int phoneNumber =
+                Integer.parseInt(textUI.promptText("Skriv dit telefon nummer:"));
+
+        String mail =
+                textUI.promptText("Skriv din mail:");
 
         for (User user : users) {
 
@@ -75,124 +81,166 @@ public class Menu {
                     user.getMail().equals(mail)) {
 
                 currentUser = user;
+
                 textUI.displayMsg("Login successful!");
                 showMenu();
                 return;
             }
         }
 
-        textUI.displayMsg("Wrong login!");
+        textUI.displayMsg("Forkert login!");
         start();
     }
 
+    public void showMenu() {
 
+        boolean running = true;
 
+        while (running) {
 
-    public void chooseParkingType() {
-        textUI.displayMsg("Parkerings typer:");
-        for (Parking p : parkinglist) {
-            textUI.displayMsg(" - " + p.getSpotTypes());
-            p.takeSpot();
-            payment.startPayment();
+            textUI.displayMsg("\n--- MENU ---");
+            textUI.displayMsg("1. Registrer lisens");
+            textUI.displayMsg("2. Vis alle zoner");
+            textUI.displayMsg("3. Vis ledig parkering i zone");
+            textUI.displayMsg("4. Vælg parkeringstype");
+            textUI.displayMsg("5. Afslut parkering");
+            textUI.displayMsg("6. Log ud");
 
-        }
+            String choice = textUI.promptText("Vælg:");
 
-    }
+            switch (choice) {
 
-    public void endParking(){
-        textUI.displayMsg("Parking ended!\n");
-        payment.endPayment();
-        parking.releaseSpot();
-    }
-
-        public void showMenu() {
-           // System.out.println("Test");
-            boolean parkingRuns = true;
-
-            while (parkingRuns) {
-                textUI.displayMsg("\n--- Tilgængelige muligheder ---");
-                /*for (Parking z: zoneList){
-                    textUI.displayMsg(z.getZones() + " (" + z.getSpotTypes() + ") "+ z.getAvailableSpots() + " ledige.");
-                }*/
-
-                textUI.displayMsg("---------------------------\n");
-
-                textUI.displayMsg("1. Vis alle zoner ");
-                textUI.displayMsg("2. Vis ledig parkering i zone ");
-                textUI.displayMsg("3. Vælg parkeringstyper ");
-                textUI.displayMsg("4. Afslut parkering ");
-                textUI.displayMsg("5. Log ud af bruger ");
-
-                String choice = textUI.promptText("Vælg en af mulighederne (1-5) ");
-
-                switch (choice) {
-                    case "1" -> showAllZones();
-                    case "2" -> showAvailableParkingInZone();
-                    case "3" -> chooseParkingType();
-                    case "4" -> endParking();
-                    case "5" -> parkingRuns = false;
+                case "1" -> registerLicense();
+                case "2" -> showAllZones();
+                case "3" -> showAvailableParkingInZone();
+                case "4" -> chooseParkingType();
+                case "5" -> endParking();
+                case "6" -> {
+                    textUI.displayMsg("Logged out");
+                    running = false;
                 }
-
             }
         }
-
-    public List<String> getZones() {
-        List<String>  zones = new ArrayList<>();
-        zones.add("Rød Zone");
-        zones.add("Grøn Zone");
-        zones.add("Blå Zone");
-        zones.add("Gul Zone");
-        return zones;
     }
 
-    public String showAllZones() {
-        List<String> zones = getZones();
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Alle zoner:");
-
+    private void showAllZones() {
         for (int i = 0; i < zones.size(); i++) {
-            System.out.println((i + 1) + ": " + zones.get(i));
+            textUI.displayMsg((i + 1) + ". " + zones.get(i));
         }
-
-        System.out.print("Vælg zone nummer: ");
-        int choice = scan.nextInt();
-        showAvailableParkingInZone();
-
-        if (choice >= 1 && choice <= zones.size()) {
-             return zones.get(choice - 1);
-
-        }
-
-        return null;
     }
 
-    private void showAvailableParkingInZone() {
-        String selectedZone = parking.getZone();
 
-        if (selectedZone == null) {
-            textUI.displayMsg("Ingen zone valgt.");
+    public void showAvailableParkingInZone() {
+
+        showAllZones();
+
+        int choice = Integer.parseInt(
+                textUI.promptText("Vælg zone:")) - 1;
+
+        if (choice < 0 || choice >= zones.size()) {
+            textUI.displayMsg("Ugyldigt valg.");
             return;
         }
 
-        textUI.displayMsg("\nLedige pladser i: " + selectedZone);
+        Zone zone = zones.get(choice);
+
+        textUI.displayMsg("\n=== " + zone.getName() + " ===");
+
+        int disabled = 0;
+        int elCar = 0;
+        int regular = 0;
+        int sharing = 0;
+        int privateArea = 0;
+        int totalAvailable = 0;
+
+        for (Parking spot : zone.getSpots()) {
+
+            if (spot.isAvailable()) {
+
+                totalAvailable++;
+
+                switch (spot.getSpotTypes()) {
+                    case "Disabled Car" -> disabled++;
+                    case "El Car" -> elCar++;
+                    case "Regular Car" -> regular++;
+                    case "Sharing Car" -> sharing++;
+                    case "Private Area" -> privateArea++;
+                }
+            }
+        }
+
+        textUI.displayMsg("Ledige pladser:");
+        textUI.displayMsg("Total available: " + totalAvailable);
+        textUI.displayMsg("Disabled: " + disabled);
+        textUI.displayMsg("El: " + elCar);
+        textUI.displayMsg("Regular: " + regular);
+        textUI.displayMsg("Sharing: " + sharing);
+        textUI.displayMsg("Private: " + privateArea);
+    }
+
+    public void chooseParkingType() {
+
+        if (currentUser.getCars() == null || currentUser.getCars().isEmpty()) {
+            textUI.displayMsg("Du skal registrere en nummerplade før du kan parkere!");
+            return;
+        }
+
+        showAllZones();
+
+        int zoneChoice = Integer.parseInt(
+                textUI.promptText("Vælg zone:")) - 1;
+
+        if (zoneChoice < 0 || zoneChoice >= zones.size()) {
+            textUI.displayMsg("Ugyldigt valg.");
+            return;
+        }
+
+        Zone zone = zones.get(zoneChoice);
+
+        String type = textUI.promptText(
+                "Type (Regular, El Car, Disabled, Sharing, Private):");
 
         boolean found = false;
 
-        for (Parking p : parkinglist) {
+        for (Parking spot : zone.getSpots()) {
 
-            if (p.getZone().equals(selectedZone)) {
+            if (spot.isAvailable()
+                    && spot.getSpotTypes().toLowerCase().contains(type.toLowerCase())) {
 
-                textUI.displayMsg(" - " + p.getSpotTypes());
+                spot.takeSpot();
+
+                parking = spot;
+                payment = new Payment(spot);
+
+                payment.startPayment();
+
+                textUI.displayMsg("Parkering startet!");
                 found = true;
+                break;
             }
         }
 
         if (!found) {
-            textUI.displayMsg("Ingen parkering fundet i denne zone.");
+            textUI.displayMsg("Ingen ledige pladser af den type.");
         }
     }
 
+
+    public void endParking() {
+
+        if (payment == null || parking == null) {
+            textUI.displayMsg("Ingen aktiv parkering.");
+            return;
+        }
+
+        double price = payment.endPayment();
+
+        parking.releaseSpot();
+
+        textUI.displayMsg("Parkering afsluttet");
+        textUI.displayMsg("Pris: " + price + " kr");
+
+        payment = null;
+        parking = null;
+    }
 }
-
-

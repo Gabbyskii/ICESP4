@@ -1,7 +1,7 @@
 public class DisabledParkingSpot extends Parking{
 
-    public DisabledParkingSpot(String label, String zone, int totalSpots) {
-        super(label, zone, totalSpots);
+    public DisabledParkingSpot(String label, Zone zone) {
+        super(label, zone);
     }
 
     @Override
