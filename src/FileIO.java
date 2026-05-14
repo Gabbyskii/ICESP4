@@ -10,8 +10,6 @@ public class FileIO {
     private static final String carFile = "Data/carData";
     private static final String zoneFile = "Data/zoneData.csv";
 
-    // ================= USERS =================
-
     public static List<User> loadUsers(String path) {
         List<User> users = new ArrayList<>();
 
@@ -49,8 +47,6 @@ public class FileIO {
             System.out.println("Fejl ved saveUsers");
         }
     }
-
-    // ================= CARS =================
 
     public static List<Car> loadCars(String path) {
         List<Car> cars = new ArrayList<>();
@@ -91,8 +87,6 @@ public class FileIO {
             System.out.println("Fejl ved saveCars");
         }
     }
-
-    // ================= ZONES =================
 
     public static List<Zone> loadZones(String path) {
         List<Zone> zones = new ArrayList<>();
