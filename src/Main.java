@@ -5,12 +5,39 @@ import domain.Zone;
 import util.FileIO;
 import util.TextUI;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
+
+        try {
+            // Load image from file
+            BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\imane\\Desktop\\Data\\Map.png"));
+
+
+            JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+
+
+            JFrame frame = new JFrame("Image Viewer");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(picLabel);
+
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         FileIO fileIO = new FileIO();
         TextUI textUI = new TextUI();
