@@ -21,10 +21,11 @@ public class Main {
 
         try {
             // Load image from file
-            BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\imane\\Desktop\\Data\\Map.png"));
+            BufferedImage myPicture = ImageIO.read(new File("src/Map.png"));
 
 
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+
 
 
             JFrame frame = new JFrame("Image Viewer");
