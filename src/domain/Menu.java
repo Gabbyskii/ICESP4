@@ -4,6 +4,7 @@ import util.FileIO;
 import util.TextUI;
 
 import java.io.FileNotFoundException;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Menu {
@@ -66,7 +67,7 @@ public class Menu {
         currentUser.addCar(newCar);
         fileIO.saveCars(cars);
 
-        textUI.displayMsg("Lisens tilføjet til din bil! ");
+        textUI.displayMsg("Licens tilføjet til din bil! ");
         showMenu();
     }
 
@@ -162,11 +163,11 @@ public class Menu {
 
                 totalAvailable++;
 
-                switch (spot.getSpotTypes()) {
-                    case "Disabled domain.Car" -> disabled++;
-                    case "El domain.Car" -> elCar++;
-                    case "Regular domain.Car" -> regular++;
-                    case "Sharing domain.Car" -> sharing++;
+                switch (spot.getSpotTypes().trim()) {
+                    case "Disabled Car" -> disabled++;
+                    case "El Car" -> elCar++;
+                    case "Regular Car" -> regular++;
+                    case "Sharing Car" -> sharing++;
                     case "Private Area" -> privateArea++;
                 }
             }
@@ -217,7 +218,6 @@ public class Menu {
 
                 payment.startPayment();
 
-                textUI.displayMsg("Parkering startet!");
                 found = true;
                 break;
             }
@@ -240,8 +240,7 @@ public class Menu {
 
         parking.releaseSpot();
 
-        textUI.displayMsg("Parkering afsluttet");
-        textUI.displayMsg("Pris: " + price + " kr");
+        textUI.displayMsg(String.format("Betalings pris: %.2f kr trækkes fra dit kort", price));
 
         payment = null;
         parking = null;
