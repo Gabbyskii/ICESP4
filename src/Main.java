@@ -20,7 +20,6 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         try {
-            // Load image from file
             BufferedImage myPicture = ImageIO.read(new File("src/Map.png"));
 
 
