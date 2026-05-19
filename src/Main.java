@@ -27,7 +27,6 @@ public class Main {
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 
 
-
             JFrame frame = new JFrame("Image Viewer");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.add(picLabel);
@@ -47,6 +46,7 @@ public class Main {
         List<Zone> zones = fileIO.loadZones("Data/zoneData");
         List<Car> cars = fileIO.loadCars("Data/carData");
 
+        textUI.displayMsg("Velkommen til Parkeringsservice S&N");
         Menu menu = new Menu(users, zones, cars, textUI, fileIO);
 
         menu.start();
